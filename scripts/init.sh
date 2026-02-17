@@ -187,7 +187,7 @@ copy_steps() {
     count=$((count + 1))
   fi
 
-  ok "$label：已複製 $count 個檔案到 $dest"
+  ok "${label}：已複製 $count 個檔案到 $dest"
 }
 
 echo ""

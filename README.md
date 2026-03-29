@@ -1,110 +1,188 @@
+English | [简体中文](README_CN.md) | [繁體中文](README_TW.md) | [日本語](README_JP.md) | [한국어](README_KR.md)
+
 # SDD-Kits
 
-這個專案提供兩套 SDD（Spec-Driven Development）步驟範本，並透過 `scripts/init.sh` 快速複製到你的目標專案。
+Two sets of SDD (Spec-Driven Development) step templates and AI-guided wizards, with install scripts for quick deployment to your project.
 
-- OpenSpec 步驟來源：`files/Open-spec-steps/`
-- Spec Kit 步驟來源：`files/Spec-kit-steps/`
+## Contents
 
-## 主要用途
+| Item | Description |
+|------|-------------|
+| `files/open-spec-steps/` | OpenSpec step templates (source) |
+| `files/spec-kit-steps/` | Spec Kit step templates (source) |
+| `skills/openspec-wizard/` | OpenSpec guided wizard (Copilot / Claude Skill) |
+| `skills/speckit-wizard/` | Spec Kit guided wizard (Copilot / Claude Skill) |
+| `scripts/init.sh` | Copy step templates to a target project |
+| `scripts/init-skill.sh` | Install guided wizards to Copilot or Claude |
 
-`init.sh` 會：
-1. 偵測你電腦是否安裝 OpenSpec（`openspec`）與 Spec Kit（`specify`）CLI。
-2. 讓你互動選擇要匯入哪一套步驟（OpenSpec / Spec Kit / 全部）。
-3. 要求輸入目標專案路徑。
-4. 將步驟檔複製到目標專案的 `sdd-steps/` 目錄。
-5. 顯示對應的 `prompt.md` 內容作為快速參考。
+---
 
-## 先決條件
+## Prerequisites
 
-至少安裝其中一個工具：
+Install at least one SDD tool:
 
 ### OpenSpec
+
 ```bash
 npm install -g @fission-ai/openspec@latest
 ```
 
-### Spec Kit（需先安裝 uv）
+### Spec Kit (requires uv)
+
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 ```
 
-## 使用方式（init.sh）
+---
 
-在本專案根目錄執行：
+## Usage 1: Install Step Templates (init.sh)
+
+Copies SDD step Markdown files to the target project's `sdd-steps/` directory for reference during development.
+
+### Interactive Mode
 
 ```bash
 bash scripts/init.sh
 ```
 
-或先給執行權限後直接執行：
+Follow the prompts to select the tool type and enter the project path.
+
+### Non-interactive Mode
 
 ```bash
-chmod +x scripts/init.sh
-./scripts/init.sh
-```
-
-接著依互動提示操作：
-- 選擇要安裝的步驟類型（編號）
-- 輸入目標專案路徑（支援 `~`）
-
-## 非互動模式（適合 CI / 腳本）
-
-`init.sh` 支援以下參數：
-
-- `-t, --tool`：`openspec` / `speckit` / `all`
-- `-p, --project`：目標專案路徑
-- `-h, --help`：顯示說明
-
-### 範例
-
-只安裝 OpenSpec 步驟：
-
-```bash
+# OpenSpec steps only
 bash scripts/init.sh --tool openspec --project ~/work/my-app
-```
 
-只安裝 Spec Kit 步驟：
-
-```bash
+# Spec Kit steps only
 bash scripts/init.sh --tool speckit --project ~/work/my-app
-```
 
-同時安裝兩套步驟：
-
-```bash
+# Install both
 bash scripts/init.sh --tool all --project ~/work/my-app
 ```
 
-查看說明：
+| Flag | Description |
+|------|-------------|
+| `-t, --tool` | `openspec` / `speckit` / `all` |
+| `-p, --project` | Target project path (supports `~`) |
+| `-h, --help` | Show help |
 
-```bash
-bash scripts/init.sh --help
-```
-
-## 輸出目錄
-
-執行成功後，檔案會被複製到目標專案：
+### Output Directory
 
 ```text
-<你的專案>/
+<your-project>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 01....md
+    │   ├── 00.setup.md
+    │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 01....md
+        ├── 00.setup.md
+        ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
 
-## 常見問題
+---
 
-- 顯示「未偵測到 OpenSpec 或 Spec Kit CLI 工具」
-  - 代表 `openspec` 與 `specify` 都不在 PATH，請先安裝其一。
+## Usage 2: Install AI Guided Wizards (init-skill.sh)
 
-- 顯示「目錄不存在」
-  - 請確認輸入的目標專案路徑正確。
+Installs SDD guided wizards to the VS Code Copilot or Claude Code skills directory. After installation, mention OpenSpec or Spec Kit in a conversation and the wizard will auto-launch with a step-by-step menu.
 
-- 顯示「無效的選擇」
-  - 請輸入互動列表中的數字編號。
+### Interactive Mode
+
+```bash
+bash scripts/init-skill.sh
+```
+
+Follow the prompts to select the wizard and target platform.
+
+### Non-interactive Mode
+
+```bash
+# Install OpenSpec wizard to Copilot
+bash scripts/init-skill.sh --skill openspec --target copilot
+
+# Install Spec Kit wizard to Claude Code
+bash scripts/init-skill.sh --skill speckit --target claude
+
+# Install all to Copilot
+bash scripts/init-skill.sh --skill all --target copilot
+```
+
+| Flag | Description |
+|------|-------------|
+| `-s, --skill` | `openspec` / `speckit` / `all` |
+| `-t, --target` | `copilot` (~/.copilot/skills) / `claude` (~/.claude/skills) |
+| `-h, --help` | Show help |
+
+---
+
+## SDD Step Overview
+
+### OpenSpec Workflow
+
+> Core flow: `proposal` → `apply` → `archive`
+
+| Step | File | Description |
+|------|------|-------------|
+| 00 | `00.setup.md` | Install CLI and run `openspec init` |
+| 01 | `01.project-setup.md` | Fill in `openspec/project.md` project info |
+| 02 | `02.proposal.md` | Create a change proposal (proposal + tasks + specs) |
+| 03 | `03.spec-format.md` | Check spec format (SHALL/MUST, Scenario, Delta) |
+| 04 | `04.validate.md` | Run `openspec validate` to verify format |
+| 05 | `05.apply.md` | AI implements tasks from tasks.md one by one |
+| 06 | `06.archive.md` | Archive; merge spec deltas back into specs/ |
+| — | `advanced.md` | Advanced: design.md and multi-spec changes |
+| — | `commands.md` | CLI & Slash Command cheat sheet |
+| — | `prompt.md` | Common prompt templates |
+
+### Spec Kit Workflow
+
+> Core flow: `constitution` → `specify` → `plan` → `tasks` → `implement`
+
+| Step | File | Description |
+|------|------|-------------|
+| 00 | `00.setup.md` | Install CLI and run `specify init` |
+| 01 | `01.constitution.md` | Define governance principles (tech stack, conventions, constraints) |
+| 02 | `02.specify.md` | Describe feature specs |
+| 03 | `03.clarify.md` | Clarify ambiguities (optional) |
+| 04 | `04.plan.md` | Create technical plan |
+| 05 | `05.tasks.md` | Break down task list |
+| 06 | `06.analyze.md` | Analyze specs and plan (optional) |
+| 07 | `07.implement.md` | Implement step by step |
+| — | `prompt.md` | Common prompt templates |
+
+---
+
+## Project Structure
+
+```text
+SDD-Kits/
+├── files/                    # Step template sources
+│   ├── open-spec-steps/
+│   └── spec-kit-steps/
+├── skills/                   # AI guided wizards
+│   ├── openspec-wizard/
+│   │   ├── SKILL.md
+│   │   └── references/steps.md
+│   └── speckit-wizard/
+│       ├── SKILL.md
+│       └── references/steps.md
+├── scripts/
+│   ├── init.sh               # Install step templates
+│   └── init-skill.sh         # Install guided wizards
+└── sdd-steps/                # Step template copies (for this repo's reference)
+    └── open-spec-steps/
+```
+
+## FAQ
+
+- **"OpenSpec or Spec Kit CLI tool not detected"**
+  - Neither `openspec` nor `specify` is in your PATH. Install at least one first.
+
+- **"Directory does not exist"**
+  - Verify the target project path is correct.
+
+- **"Invalid selection"**
+  - Enter a valid number from the interactive menu.

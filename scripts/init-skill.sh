@@ -151,8 +151,8 @@ CLAUDE_SKILLS="$HOME/.claude/skills"
 if [[ -z "$target" ]]; then
   echo ""
   info "請選擇安裝目標："
-  echo "  [1] VS Code Copilot （$COPILOT_SKILLS）"
-  echo "  [2] Claude Code     （$CLAUDE_SKILLS）"
+  echo "  [1] VS Code Copilot （${COPILOT_SKILLS}）"
+  echo "  [2] Claude Code     （${CLAUDE_SKILLS}）"
   echo ""
   read -rp "請選擇（輸入編號）: " target_choice
 
@@ -209,7 +209,7 @@ install_skill() {
 
   local file_count
   file_count=$(find "$dest" -type f | wc -l | tr -d ' ')
-  ok "$skill_name：已複製 $file_count 個檔案到 $dest"
+  ok "${skill_name}：已複製 ${file_count} 個檔案到 ${dest}"
 }
 
 echo ""

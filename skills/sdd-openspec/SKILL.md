@@ -46,11 +46,23 @@ openspec --version
 
 ### 3. 顯示步驟選單
 
-請讀取 `references/steps.md` 的「操作步驟選單」段落並原樣顯示，作為互動選單。
+請讀取 `references/menu.md` 並原樣顯示，作為互動選單。
 
 ### 4. 執行步驟
 
-讀取 `<SKILL_DIR>/references/steps.md` 取得選定步驟的完整指引，依照該步驟：
+依使用者選擇按需讀取對應小檔：
+
+- Step 0: `references/steps/step-0-init.md`
+- Step 1: `references/steps/step-1-project.md`
+- Step 2: `references/steps/step-2-propose.md`
+- Step 3: `references/steps/step-3-spec-format.md`
+- Step 4: `references/steps/step-4-validate.md`
+- Step 5: `references/steps/step-5-apply.md`
+- Step 6: `references/steps/step-6-archive.md`
+- A: `references/steps/step-a-advanced.md`
+- C: `references/commands.md`
+
+取得選定步驟的完整指引後，依照該步驟：
 
 1. **顯示步驟說明**：該步驟的目的與注意事項
 2. **提供提示詞模板**：可直接使用的指令或提示
@@ -78,17 +90,17 @@ openspec --version
 
 ### Log 檔案初始化模板
 
-首次建立時，請使用 `references/steps.md` 的「Log 格式清單 / Log 檔案初始化模板」。
+首次建立時，請使用 `references/log-format.md` 的「Log 檔案初始化模板」。
 
 ### 每步驟追加格式
 
-每完成一個步驟，請使用 `references/steps.md` 的「Log 格式清單 / 每步驟追加格式」。
+每完成一個步驟，請使用 `references/log-format.md` 的「每步驟追加格式」。
 
 ## 關鍵規則
 
 | # | 規則 | 說明 |
 |---|------|------|
-| 1 | 先讀再做 | 每次執行步驟前，先讀取 `references/steps.md` 對應段落 |
+| 1 | 先讀再做 | 每次執行步驟前，先讀取對應的小檔（`references/menu.md`、`references/log-format.md`、`references/steps/step-*.md`、`references/commands.md`） |
 | 2 | 忠實記錄 | 使用者的每次輸入都必須記錄到 log |
 | 3 | 不跳步驟 | 選單讓使用者自由選擇，但提醒建議順序 |
 | 4 | 範圍控制 | 實作階段提醒使用者「請專注在 tasks.md 列出的項目」 |

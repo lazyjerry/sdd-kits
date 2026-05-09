@@ -48,11 +48,23 @@ specify --version
 
 ### 3. 顯示步驟選單
 
-請讀取 `references/steps.md` 的「操作步驟選單」段落並原樣顯示，作為互動選單。
+請讀取 `references/menu.md` 並原樣顯示，作為互動選單。
 
 ### 4. 執行步驟
 
-讀取 `<SKILL_DIR>/references/steps.md` 取得選定步驟的完整指引，依照該步驟：
+依使用者選擇按需讀取對應小檔：
+
+- Step 0: `references/steps/step-0-init.md`
+- Step 1: `references/steps/step-1-constitution.md`
+- Step 2: `references/steps/step-2-specify.md`
+- Step 3: `references/steps/step-3-clarify.md`
+- Step 4: `references/steps/step-4-plan.md`
+- Step 5: `references/steps/step-5-tasks.md`
+- Step 6: `references/steps/step-6-analyze.md`
+- Step 7: `references/steps/step-7-implement.md`
+- C: `references/commands.md`
+
+取得選定步驟的完整指引後，依照該步驟：
 
 1. **顯示步驟說明**：該步驟的目的與注意事項
 2. **提供提示詞模板**：可直接使用的 slash command 或提示
@@ -80,17 +92,17 @@ specify --version
 
 ### Log 檔案初始化模板
 
-首次建立時，請使用 `references/steps.md` 的「Log 格式清單 / Log 檔案初始化模板」。
+首次建立時，請使用 `references/log-format.md` 的「Log 檔案初始化模板」。
 
 ### 每步驟追加格式
 
-每完成一個步驟，請使用 `references/steps.md` 的「Log 格式清單 / 每步驟追加格式」。
+每完成一個步驟，請使用 `references/log-format.md` 的「每步驟追加格式」。
 
 ## 關鍵規則
 
 | # | 規則 | 說明 |
 |---|------|------|
-| 1 | 先讀再做 | 每次執行步驟前，先讀取 `references/steps.md` 對應段落 |
+| 1 | 先讀再做 | 每次執行步驟前，先讀取對應的小檔（`references/menu.md`、`references/log-format.md`、`references/steps/step-*.md`、`references/commands.md`） |
 | 2 | 忠實記錄 | 使用者的每次輸入都必須記錄到 log |
 | 3 | 不跳步驟 | 選單讓使用者自由選擇，但提醒建議順序 |
 | 4 | what 優先 | Step 2 專注描述「做什麼」與「為什麼」，不提技術細節 |

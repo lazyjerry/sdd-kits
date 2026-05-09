@@ -5,7 +5,7 @@ description: >-
   或要求以規格驅動開發方式定義功能規格時觸發。
   以選單方式呈現所有步驟，引導使用者完成從初始化到實作的完整流程，
   並將每步操作記錄保存為 log 檔案。
-version: 1.0.4
+version: 1.0.5
 author: lazyjerry
 ---
 
@@ -20,7 +20,14 @@ author: lazyjerry
 執行以下終端指令確認 Spec Kit 是否已安裝：
 
 ```bash
-specify --version
+specify version
+```
+
+檢測並更新套件（建議每次啟動先執行）：
+
+```bash
+uv tool upgrade specify-cli
+specify version
 ```
 
 

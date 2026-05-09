@@ -31,6 +31,8 @@ npm install -g @fission-ai/openspec@latest
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool upgrade specify-cli
+specify version
 ```
 
 ---
@@ -192,7 +194,7 @@ After installation, the skills will be available in all configured AI tools (Cop
 
 | Step | File | Description |
 |------|------|-------------|
-| 00 | `00.setup.md` | Install CLI and run `specify init` |
+| 00 | `00.setup.md` | Install CLI and run `specify init --integration <agent>` |
 | 01 | `01.constitution.md` | Define governance principles (tech stack, conventions, constraints) |
 | 02 | `02.specify.md` | Describe feature specs |
 | 03 | `03.clarify.md` | Clarify ambiguities (optional) |

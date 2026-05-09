@@ -15,23 +15,25 @@
 新專案：
 
 ```bash
-specify init <project-name> --ai <agent>
+specify init <project-name> --integration <agent>
 ```
 
 既有專案：
 
 ```bash
 cd <專案目錄>
-specify init . --ai <agent>
+specify init . --integration <agent>
 # 或
-specify init --here --ai <agent>
+specify init --here --integration <agent>
 ```
 
-支援的 `--ai` 選項包括：`claude`、`copilot`、`cursor-agent`、`gemini`、`codex`、`windsurf` 等。
+支援的 `--integration` 選項包括：`claude`、`copilot`、`cursor-agent`、`gemini`、`codex`、`windsurf` 等。
 
 環境檢查：
 
 ```bash
+uv tool upgrade specify-cli
+specify version
 specify check
 ```
 
@@ -51,12 +53,12 @@ specs/
 ```
 請確認以下資訊：
 1. 這是新專案還是既有專案？
-2. 你使用的 AI 工具是？（claude / copilot / cursor-agent / gemini / 其他）
+2. 你使用的 integration 是？（claude / copilot / cursor-agent / gemini / 其他）
 ```
 
 ### 注意事項
 
 - 既有專案使用 `specify init .` 或 `specify init --here`
 - 可加 `--force` 強制覆寫（非空白目錄）
-- 可加 `--ai-skills` 安裝 agent skills
+- `--ai` 為舊參數，建議改用 `--integration`
 - 初始化後建議立即進入 Step 1 建立治理原則

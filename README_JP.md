@@ -30,6 +30,8 @@ npm install -g @fission-ai/openspec@latest
 
 ```bash
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
+uv tool upgrade specify-cli
+specify version
 ```
 
 
@@ -190,7 +192,7 @@ ai-global status
 
 | ステップ | ファイル | 説明 |
 |----------|----------|------|
-| 00 | `00.setup.md` | CLI をインストールし `specify init` を実行 |
+| 00 | `00.setup.md` | CLI をインストールし `specify init --integration <agent>` を実行 |
 | 01 | `01.constitution.md` | ガバナンス原則を定義（技術スタック、慣例、制約） |
 | 02 | `02.specify.md` | 機能仕様を記述 |
 | 03 | `03.clarify.md` | 曖昧な部分を明確化（任意） |

@@ -5,7 +5,7 @@ description: >-
   或要求以規格驅動開發方式建立提案時觸發。
   以選單方式呈現所有步驟，引導使用者完成從初始化到歸檔的完整流程，
   並將每步操作記錄保存為 log 檔案。
-version: 0.1.0
+version: 1.0.4
 author: lazyjerry
 ---
 

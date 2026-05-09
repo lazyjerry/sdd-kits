@@ -8,7 +8,7 @@
 請選擇要執行的步驟：
 
   [0] 初始化專案        — openspec init
-  [1] 填寫專案資訊      — 編輯 openspec/project.md
+  [1] 建立專案背景（選用）— /opsx:explore
   [2] 建立變更提案      — /opsx:propose <描述>
   [3] 檢查規格格式      — 檢查 SHALL/MUST + Scenario
   [4] 驗證提案          — openspec validate <name> --strict

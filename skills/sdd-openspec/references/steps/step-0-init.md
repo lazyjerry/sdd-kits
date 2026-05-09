@@ -9,6 +9,13 @@
 - 已安裝 OpenSpec CLI（`npm install -g @fission-ai/openspec@latest`）
 - 已切換到目標專案目錄
 
+建議先檢測套件版本：
+
+```bash
+npm install -g @fission-ai/openspec@latest
+openspec --version
+```
+
 ### 執行指令
 
 ```bash
@@ -16,17 +23,31 @@ cd <專案目錄>
 openspec init
 ```
 
+非互動模式（指定整合工具）：
+
+```bash
+openspec init --tools github-copilot .
+```
+
 系統會詢問使用的 AI 工具，根據使用者選擇自動設定 Slash Command。
+
+若專案已初始化過且剛更新套件，建議同步整合指令檔：
+
+```bash
+openspec update
+```
 
 ### 預期產出
 
 ```
+.github/
+├── prompts/      # /opsx:* 提示詞
+└── skills/       # OpenSpec 技能檔
+
 openspec/
-├── AGENTS.md     # 給 AI 讀的工作流程
-├── project.md    # 專案基本資訊
-├── changes/      # 變更提案
-│   └── archive/  # 已完成的變更
-└── specs/        # 目前系統的規格（真相來源）
+├── changes/
+│   └── archive/
+└── specs/
 ```
 
 ### 引導提示
@@ -39,4 +60,5 @@ openspec/
 ### 注意事項
 
 - 如已經初始化過，再次執行會提示是否覆寫
-- 初始化後建議立即進入 Step 1 填寫專案資訊
+- OpenSpec 套件更新後，建議在專案目錄執行 `openspec update`
+- 初始化後建議立即進入 Step 1 建立專案背景（選用）

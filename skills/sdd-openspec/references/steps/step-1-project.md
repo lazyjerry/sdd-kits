@@ -1,19 +1,20 @@
-## Step 1：填寫專案資訊
+## Step 1：建立專案背景（選用）
 
 ### 目的
 
-填寫 `openspec/project.md`，讓 AI 了解專案背景、技術棧和編碼慣例，提升後續提案品質。
+在開始提案前先建立專案背景脈絡，讓後續 `/opsx:propose` 產出的規格更貼近現況。
 
 ### 提示詞模板
 
 直接貼給 AI：
 
 ```
-Please read openspec/project.md and help me fill it out
-with details about my project, tech stack, and conventions
+/opsx:explore
+請先盤點目前專案的背景、技術棧、限制與既有規格，
+並整理成提案前重點摘要。
 ```
 
-### project.md 內容欄位
+### 建議整理項目
 
 | 區塊 | 填寫內容 |
 |------|----------|
@@ -25,7 +26,7 @@ with details about my project, tech stack, and conventions
 ### 引導提示
 
 ```
-請簡述你的專案：
+請簡述你的專案背景：
 1. 專案目的是什麼？
 2. 使用什麼技術棧？（語言、框架、資料庫）
 3. 有沒有特殊的編碼慣例或限制？
@@ -33,5 +34,5 @@ with details about my project, tech stack, and conventions
 
 ### 注意事項
 
-- 既有專案（Brownfield）不需一次補齊所有規格，先從下一個要做的功能開始
-- project.md 填越完整，AI 產出越貼近專案風格
+- 此步驟為選用，但在 Brownfield 專案很建議先做
+- 若資訊不足，可先進入 Step 2 建立最小提案，再逐步補齊背景

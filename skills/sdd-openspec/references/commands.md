@@ -4,7 +4,10 @@
 
 | 指令 | 說明 |
 |------|------|
+| `npm install -g @fission-ai/openspec@latest` | 安裝或更新 OpenSpec CLI |
+| `openspec --version` | 顯示 OpenSpec CLI 版本 |
 | `openspec init` | 初始化專案 |
+| `openspec init --tools github-copilot .` | 非互動初始化並指定整合工具 |
 | `openspec list` | 列出進行中的變更（`--specs` 列規格） |
 | `openspec show [name]` | 顯示詳細內容（`--json` 取 JSON） |
 | `openspec validate [name] --strict` | 驗證格式 |
@@ -13,13 +16,19 @@
 | `openspec config profile` | 選擇設定檔 |
 | `openspec update` | 更新 AI 指令檔案 |
 
-### Slash Commands（新版 /opsx:*）
+### Slash Commands（核心 /opsx:*）
 
 | 指令 | 說明 |
 |------|------|
+| `/opsx:explore` | 先盤點背景與限制，再決定提案方向 |
 | `/opsx:propose <描述>` | 建立提案 |
 | `/opsx:apply` | 開始實作 |
 | `/opsx:archive` | 歸檔 |
+
+### Slash Commands（擴充流程）
+
+| 指令 | 說明 |
+|------|------|
 | `/opsx:new` | 建立新變更（擴充工作流） |
 | `/opsx:continue` | 繼續未完成的實作 |
 | `/opsx:ff` | 快速推進 |

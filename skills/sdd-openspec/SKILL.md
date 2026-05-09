@@ -5,7 +5,7 @@ description: >-
   或要求以規格驅動開發方式建立提案時觸發。
   以選單方式呈現所有步驟，引導使用者完成從初始化到歸檔的完整流程，
   並將每步操作記錄保存為 log 檔案。
-version: 1.0.4
+version: 1.0.5
 author: lazyjerry
 ---
 
@@ -21,6 +21,20 @@ author: lazyjerry
 
 ```bash
 openspec --version
+```
+
+檢測並更新套件（建議每次啟動先執行）：
+
+```bash
+npm install -g @fission-ai/openspec@latest
+openspec --version
+```
+
+若專案已初始化過 OpenSpec，更新套件後建議同步整合指令檔：
+
+```bash
+cd <專案目錄>
+openspec update
 ```
 
 - **已安裝** → 顯示版本號，進入步驟選單

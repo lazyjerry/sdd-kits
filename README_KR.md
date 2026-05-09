@@ -10,8 +10,8 @@
 |------|------|
 | `files/open-spec-steps/` | OpenSpec 단계 템플릿 (소스) |
 | `files/spec-kit-steps/` | Spec Kit 단계 템플릿 (소스) |
-| `skills/openspec-wizard/` | OpenSpec 운영 가이드 위저드 (Copilot / Claude Skill) |
-| `skills/speckit-wizard/` | Spec Kit 운영 가이드 위저드 (Copilot / Claude Skill) |
+| `skills/sdd-openspec/` | OpenSpec 운영 가이드 위저드 (Copilot / Claude Skill) |
+| `skills/sdd-speckit/` | Spec Kit 운영 가이드 위저드 (Copilot / Claude Skill) |
 | `scripts/init.sh` | 단계 템플릿을 대상 프로젝트에 복사 |
 | `scripts/init-skill.sh` | 운영 가이드 위저드를 Copilot 또는 Claude에 설치 |
 
@@ -163,10 +163,10 @@ SDD-Kits/
 │   ├── open-spec-steps/
 │   └── spec-kit-steps/
 ├── skills/                   # AI 운영 가이드 위저드
-│   ├── openspec-wizard/
+│   ├── sdd-openspec/
 │   │   ├── SKILL.md
 │   │   └── references/steps.md
-│   └── speckit-wizard/
+│   └── sdd-speckit/
 │       ├── SKILL.md
 │       └── references/steps.md
 ├── scripts/

@@ -72,11 +72,11 @@ fi
 has_openspec_skill=false
 has_speckit_skill=false
 
-if [[ -f "$SKILLS_DIR/openspec-wizard/SKILL.md" ]]; then
+if [[ -f "$SKILLS_DIR/sdd-openspec/SKILL.md" ]]; then
   has_openspec_skill=true
 fi
 
-if [[ -f "$SKILLS_DIR/speckit-wizard/SKILL.md" ]]; then
+if [[ -f "$SKILLS_DIR/sdd-speckit/SKILL.md" ]]; then
   has_speckit_skill=true
 fi
 
@@ -127,12 +127,12 @@ else
   esac
 
   if [[ "$selected" == "openspec" ]] && ! $has_openspec_skill; then
-    err "找不到 openspec-wizard skill"
+    err "找不到 sdd-openspec skill"
     exit 1
   fi
 
   if [[ "$selected" == "speckit" ]] && ! $has_speckit_skill; then
-    err "找不到 speckit-wizard skill"
+    err "找不到 sdd-speckit skill"
     exit 1
   fi
 
@@ -215,11 +215,11 @@ install_skill() {
 echo ""
 
 if [[ "$selected" == "openspec" ]] || [[ "$selected" == "all" ]]; then
-  install_skill "openspec-wizard"
+  install_skill "sdd-openspec"
 fi
 
 if [[ "$selected" == "speckit" ]] || [[ "$selected" == "all" ]]; then
-  install_skill "speckit-wizard"
+  install_skill "sdd-speckit"
 fi
 
 # ── Step 4：印出使用說明 ──

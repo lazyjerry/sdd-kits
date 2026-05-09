@@ -1,10 +1,12 @@
 ---
-name: speckit-wizard
+name: sdd-speckit
 description: >-
   Spec Kit SDD 操作指引精靈。當使用者意圖使用 Spec Kit、提及 SDD 開發並選擇 Spec Kit、
   或要求以規格驅動開發方式定義功能規格時觸發。
   以選單方式呈現所有步驟，引導使用者完成從初始化到實作的完整流程，
   並將每步操作記錄保存為 log 檔案。
+version: 0.1.0
+author: lazyjerry
 ---
 
 # Spec Kit 操作指引精靈
@@ -21,8 +23,6 @@ description: >-
 specify --version
 ```
 
-- **已安裝** → 顯示版本號，進入步驟選單
-- **未安裝** → 顯示安裝指引後停止：
 
 ```
 ⚠️ 尚未偵測到 Spec Kit CLI（specify）。請先安裝：
@@ -48,27 +48,7 @@ specify --version
 
 ### 3. 顯示步驟選單
 
-```
-══════════════════════════════════════
-  Spec Kit 操作指引精靈
-══════════════════════════════════════
-
-請選擇要執行的步驟：
-
-  [0] 初始化專案        — specify init
-  [1] 建立治理原則      — /speckit.constitution
-  [2] 描述功能規格      — /speckit.specify
-  [3] 釐清模糊地帶      — /speckit.clarify        (選用)
-  [4] 製作技術計畫      — /speckit.plan
-  [5] 拆解任務清單      — /speckit.tasks
-  [6] 分析規格與計畫    — /speckit.analyze         (選用)
-  [7] 逐步實作          — /speckit.implement
-  ─────────────────────
-  [C] 常用指令速查
-  [Q] 結束精靈
-
-輸入編號繼續：
-```
+請讀取 `references/steps.md` 的「操作步驟選單」段落並原樣顯示，作為互動選單。
 
 ### 4. 執行步驟
 
@@ -100,45 +80,11 @@ specify --version
 
 ### Log 檔案初始化模板
 
-首次建立時寫入：
-
-```markdown
-# Spec Kit Log: <功能名稱>
-
-- **工具**：Spec Kit
-- **日期**：<YYYY-MM-DD>
-- **專案**：<專案路徑>
-
----
-```
+首次建立時，請使用 `references/steps.md` 的「Log 格式清單 / Log 檔案初始化模板」。
 
 ### 每步驟追加格式
 
-每完成一個步驟，append 以下區塊：
-
-```markdown
-## Step <N>: <步驟名稱>
-
-**時間**：<HH:MM>
-
-### 使用者輸入
-
-<使用者提供的原始輸入或選項>
-
-### 執行內容
-
-<實際執行的指令或提示詞>
-
-### 執行結果
-
-<AI 輸出摘要或 CLI 輸出>
-
-### 狀態
-
-✅ 完成
-
----
-```
+每完成一個步驟，請使用 `references/steps.md` 的「Log 格式清單 / 每步驟追加格式」。
 
 ## 關鍵規則
 

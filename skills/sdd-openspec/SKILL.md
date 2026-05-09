@@ -5,6 +5,8 @@ description: >-
   或要求以規格驅動開發方式建立提案時觸發。
   以選單方式呈現所有步驟，引導使用者完成從初始化到歸檔的完整流程，
   並將每步操作記錄保存為 log 檔案。
+version: 0.1.0
+author: lazyjerry
 ---
 
 # OpenSpec 操作指引精靈
@@ -44,27 +46,7 @@ openspec --version
 
 ### 3. 顯示步驟選單
 
-```
-══════════════════════════════════════
-  OpenSpec 操作指引精靈
-══════════════════════════════════════
-
-請選擇要執行的步驟：
-
-  [0] 初始化專案        — openspec init
-  [1] 填寫專案資訊      — 編輯 openspec/project.md
-  [2] 建立變更提案      — /opsx:propose <描述>
-  [3] 檢查規格格式      — 檢查 SHALL/MUST + Scenario
-  [4] 驗證提案          — openspec validate <name> --strict
-  [5] 開始實作          — /opsx:apply
-  [6] 歸檔              — /opsx:archive
-  ─────────────────────
-  [A] 進階：design.md 與多 Specs
-  [C] 常用指令速查
-  [Q] 結束精靈
-
-輸入編號繼續：
-```
+請讀取 `references/steps.md` 的「操作步驟選單」段落並原樣顯示，作為互動選單。
 
 ### 4. 執行步驟
 
@@ -96,45 +78,11 @@ openspec --version
 
 ### Log 檔案初始化模板
 
-首次建立時寫入：
-
-```markdown
-# OpenSpec Log: <提案名稱>
-
-- **工具**：OpenSpec
-- **日期**：<YYYY-MM-DD>
-- **專案**：<專案路徑>
-
----
-```
+首次建立時，請使用 `references/steps.md` 的「Log 格式清單 / Log 檔案初始化模板」。
 
 ### 每步驟追加格式
 
-每完成一個步驟，append 以下區塊：
-
-```markdown
-## Step <N>: <步驟名稱>
-
-**時間**：<HH:MM>
-
-### 使用者輸入
-
-<使用者提供的原始輸入或選項>
-
-### 執行內容
-
-<實際執行的指令或提示詞>
-
-### 執行結果
-
-<AI 輸出摘要或 CLI 輸出>
-
-### 狀態
-
-✅ 完成
-
----
-```
+每完成一個步驟，請使用 `references/steps.md` 的「Log 格式清單 / 每步驟追加格式」。
 
 ## 關鍵規則
 

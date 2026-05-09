@@ -10,8 +10,8 @@ Two sets of SDD (Spec-Driven Development) step templates and AI-guided wizards, 
 |------|-------------|
 | `files/open-spec-steps/` | OpenSpec step templates (source) |
 | `files/spec-kit-steps/` | Spec Kit step templates (source) |
-| `skills/openspec-wizard/` | OpenSpec guided wizard (Copilot / Claude Skill) |
-| `skills/speckit-wizard/` | Spec Kit guided wizard (Copilot / Claude Skill) |
+| `skills/sdd-openspec/` | OpenSpec guided wizard (Copilot / Claude Skill) |
+| `skills/sdd-speckit/` | Spec Kit guided wizard (Copilot / Claude Skill) |
 | `scripts/init.sh` | Copy step templates to a target project |
 | `scripts/init-skill.sh` | Install guided wizards to Copilot or Claude |
 
@@ -163,10 +163,10 @@ SDD-Kits/
 │   ├── open-spec-steps/
 │   └── spec-kit-steps/
 ├── skills/                   # AI guided wizards
-│   ├── openspec-wizard/
+│   ├── sdd-openspec/
 │   │   ├── SKILL.md
 │   │   └── references/steps.md
-│   └── speckit-wizard/
+│   └── sdd-speckit/
 │       ├── SKILL.md
 │       └── references/steps.md
 ├── scripts/

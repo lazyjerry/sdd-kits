@@ -10,8 +10,8 @@
 |------|------|
 | `files/open-spec-steps/` | OpenSpec ステップテンプレート（ソース） |
 | `files/spec-kit-steps/` | Spec Kit ステップテンプレート（ソース） |
-| `skills/openspec-wizard/` | OpenSpec 操作ガイドウィザード（Copilot / Claude Skill） |
-| `skills/speckit-wizard/` | Spec Kit 操作ガイドウィザード（Copilot / Claude Skill） |
+| `skills/sdd-openspec/` | OpenSpec 操作ガイドウィザード（Copilot / Claude Skill） |
+| `skills/sdd-speckit/` | Spec Kit 操作ガイドウィザード（Copilot / Claude Skill） |
 | `scripts/init.sh` | ステップテンプレートをターゲットプロジェクトにコピー |
 | `scripts/init-skill.sh` | 操作ガイドウィザードを Copilot または Claude にインストール |
 
@@ -163,10 +163,10 @@ SDD-Kits/
 │   ├── open-spec-steps/
 │   └── spec-kit-steps/
 ├── skills/                   # AI 操作ガイドウィザード
-│   ├── openspec-wizard/
+│   ├── sdd-openspec/
 │   │   ├── SKILL.md
 │   │   └── references/steps.md
-│   └── speckit-wizard/
+│   └── sdd-speckit/
 │       ├── SKILL.md
 │       └── references/steps.md
 ├── scripts/

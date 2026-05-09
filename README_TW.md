@@ -10,8 +10,8 @@ English | [简体中文](README_CN.md) | 繁體中文 | [日本語](README_JP.md
 |------|------|
 | `files/open-spec-steps/` | OpenSpec 步驟範本（來源） |
 | `files/spec-kit-steps/` | Spec Kit 步驟範本（來源） |
-| `skills/openspec-wizard/` | OpenSpec 操作指引精靈（Copilot / Claude Skill） |
-| `skills/speckit-wizard/` | Spec Kit 操作指引精靈（Copilot / Claude Skill） |
+| `skills/sdd-openspec/` | OpenSpec 操作指引精靈（Copilot / Claude Skill） |
+| `skills/sdd-speckit/` | Spec Kit 操作指引精靈（Copilot / Claude Skill） |
 | `scripts/init.sh` | 將步驟範本複製到目標專案 |
 | `scripts/init-skill.sh` | 將操作指引精靈安裝到 Copilot 或 Claude |
 
@@ -163,10 +163,10 @@ SDD-Kits/
 │   ├── open-spec-steps/
 │   └── spec-kit-steps/
 ├── skills/                   # AI 操作指引精靈
-│   ├── openspec-wizard/
+│   ├── sdd-openspec/
 │   │   ├── SKILL.md
 │   │   └── references/steps.md
-│   └── speckit-wizard/
+│   └── sdd-speckit/
 │       ├── SKILL.md
 │       └── references/steps.md
 ├── scripts/

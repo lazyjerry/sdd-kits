@@ -10,8 +10,8 @@
 |------|------|
 | `files/open-spec-steps/` | OpenSpec 步骤模板（来源） |
 | `files/spec-kit-steps/` | Spec Kit 步骤模板（来源） |
-| `skills/openspec-wizard/` | OpenSpec 操作引导精灵（Copilot / Claude Skill） |
-| `skills/speckit-wizard/` | Spec Kit 操作引导精灵（Copilot / Claude Skill） |
+| `skills/sdd-openspec/` | OpenSpec 操作引导精灵（Copilot / Claude Skill） |
+| `skills/sdd-speckit/` | Spec Kit 操作引导精灵（Copilot / Claude Skill） |
 | `scripts/init.sh` | 将步骤模板复制到目标项目 |
 | `scripts/init-skill.sh` | 将操作引导精灵安装到 Copilot 或 Claude |
 
@@ -163,10 +163,10 @@ SDD-Kits/
 │   ├── open-spec-steps/
 │   └── spec-kit-steps/
 ├── skills/                   # AI 操作引导精灵
-│   ├── openspec-wizard/
+│   ├── sdd-openspec/
 │   │   ├── SKILL.md
 │   │   └── references/steps.md
-│   └── speckit-wizard/
+│   └── sdd-speckit/
 │       ├── SKILL.md
 │       └── references/steps.md
 ├── scripts/

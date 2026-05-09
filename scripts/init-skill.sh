@@ -25,10 +25,12 @@ usage() {
 用法：
   bash scripts/init-skill.sh
   bash scripts/init-skill.sh --skill <openspec|speckit|all> --target <copilot|claude>
+  bash scripts/init-skill.sh --skill <openspec|speckit|all> --target <copilot|claude> --force
 
 參數：
   -s, --skill      指定要安裝的 skill：openspec / speckit / all
   -t, --target     指定安裝目標：copilot（~/.copilot/skills）/ claude（~/.claude/skills）
+  -f, --force      目標已存在時直接覆蓋（非互動）
   -h, --help       顯示此說明
 
 說明：
@@ -39,6 +41,7 @@ EOF
 
 selected=""
 target=""
+force_overwrite=false
 
 while [[ $# -gt 0 ]]; do
   case "$1" in
@@ -49,6 +52,10 @@ while [[ $# -gt 0 ]]; do
     -t|--target)
       target="${2:-}"
       shift 2
+      ;;
+    -f|--force)
+      force_overwrite=true
+      shift
       ;;
     -h|--help)
       usage
@@ -196,11 +203,20 @@ install_skill() {
 
   if [[ -d "$dest" ]]; then
     warn "目標已存在：$dest"
-    read -rp "是否覆蓋？(y/N) " overwrite
-    if [[ "$overwrite" != "y" && "$overwrite" != "Y" ]]; then
-      info "跳過 $skill_name"
+
+    if $force_overwrite; then
+      info "已啟用 --force，直接覆蓋 $skill_name"
+    elif [[ ! -t 0 ]]; then
+      warn "目前為非互動輸入，未啟用 --force，跳過 $skill_name"
       return 0
+    else
+      read -rp "是否覆蓋？(y/N) " overwrite
+      if [[ "$overwrite" != "y" && "$overwrite" != "Y" ]]; then
+        info "跳過 $skill_name"
+        return 0
+      fi
     fi
+
     rm -rf "$dest"
   fi
 

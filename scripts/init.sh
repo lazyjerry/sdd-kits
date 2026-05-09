@@ -5,8 +5,8 @@ set -euo pipefail
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
 ROOT_DIR="$(cd "$SCRIPT_DIR/.." && pwd)"
 
-OPENSPEC_DIR="$ROOT_DIR/files/Open-spec-steps"
-SPECKIT_DIR="$ROOT_DIR/files/Spec-kit-steps"
+OPENSPEC_DIR="$ROOT_DIR/files/open-spec-steps"
+SPECKIT_DIR="$ROOT_DIR/files/spec-kit-steps"
 
 # ── 顏色定義 ──
 GREEN='\033[0;32m'

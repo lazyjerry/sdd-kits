@@ -37,7 +37,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 ## 사용법 1: 단계 템플릿 설치 (init.sh)
 
-SDD 단계 Markdown 파일을 대상 프로젝트의 `sdd-steps/` 디렉토리에 복사합니다. 개발 시 참고 자료로 활용할 수 있습니다.
+SDD 단계 Markdown 파일(`01.*` 이후)과 `prompt.md`를 대상 프로젝트의 `sdd-steps/` 디렉토리에 복사합니다. 개발 시 참고 자료로 활용할 수 있습니다.
 
 ### 대화형 모드
 
@@ -72,16 +72,16 @@ bash scripts/init.sh --tool all --project ~/work/my-app
 <프로젝트>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 00.setup.md
     │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 00.setup.md
         ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
+
+> 참고: `00.setup.md`는 초기 설정 참고용으로 이 저장소에 유지되며, `init.sh`로 대상 프로젝트에 복사되지 않습니다.
 
 ---
 
@@ -108,13 +108,62 @@ bash scripts/init-skill.sh --skill speckit --target claude
 
 # 모두 Copilot에 설치
 bash scripts/init-skill.sh --skill all --target copilot
+
+# 대상이 이미 있어도 확인 없이 덮어쓰기
+bash scripts/init-skill.sh --skill all --target copilot --force
 ```
 
 | 매개변수 | 설명 |
 |----------|------|
 | `-s, --skill` | `openspec` / `speckit` / `all` |
 | `-t, --target` | `copilot` (~/.copilot/skills) / `claude` (~/.claude/skills) |
+| `-f, --force` | 기존 대상 디렉터리를 확인 없이 덮어쓰기 |
 | `-h, --help` | 도움말 표시 |
+
+
+## SDD 단계 개요
+## 사용 방법 3: ai-global을 통한 운영 가이드 위저드 설치
+
+[ai-global](https://github.com/lazyjerry/ai-global)은 여러 AI 도구(Copilot, Claude Code, Cursor, Windsurf 등)의 통합 구성 관리자입니다. 이 방법을 사용하면 위저드를 전역적으로 설치하고 모든 AI 도구 간에 동기화할 수 있습니다.
+
+### 사전 요구 사항
+
+먼저 ai-global을 설치하세요:
+
+```bash
+# curl 사용 (권장)
+curl -fsSL https://raw.githubusercontent.com/lazyjerry/ai-global/main/install.sh | bash
+
+# 또는 npm 사용
+npm install -g ai-global
+```
+
+### 위저드 설치
+
+```bash
+# SDD OpenSpec 위저드 추가
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-openspec
+
+# SDD Spec Kit 위저드 추가
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-speckit
+
+# 또는 본 저장소를 클론한 후 둘 다 설치
+git clone https://github.com/lazyjerry/SDD-Kits.git
+ai-global add-skill ./SDD-Kits/skills/sdd-openspec
+ai-global add-skill ./SDD-Kits/skills/sdd-speckit
+```
+
+### 설치 확인
+
+```bash
+# 설치된 모든 스킬 목록 표시
+ai-global list-skills
+
+# 상태 확인
+ai-global status
+```
+
+설치 완료 후 위저드는 모든 구성된 AI 도구(Copilot, Claude Code, Cursor 등)에서 사용 가능합니다. 대화에서 OpenSpec 또는 Spec Kit을 언급하면 위저드가 자동으로 시작됩니다.
 
 ---
 

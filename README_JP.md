@@ -15,7 +15,6 @@
 | `scripts/init.sh` | ステップテンプレートをターゲットプロジェクトにコピー |
 | `scripts/init-skill.sh` | 操作ガイドウィザードを Copilot または Claude にインストール |
 
----
 
 ## 前提条件
 
@@ -33,11 +32,10 @@ npm install -g @fission-ai/openspec@latest
 uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 ```
 
----
 
 ## 使い方1：ステップテンプレートのインストール（init.sh）
 
-SDD ステップの Markdown ファイルをターゲットプロジェクトの `sdd-steps/` ディレクトリにコピーします。開発時の参考として利用できます。
+SDD ステップ Markdown ファイル（`01.*` 以降）と `prompt.md` をターゲットプロジェクトの `sdd-steps/` ディレクトリにコピーします。開発時の参考として利用できます。
 
 ### 対話モード
 
@@ -72,18 +70,17 @@ bash scripts/init.sh --tool all --project ~/work/my-app
 <プロジェクト>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 00.setup.md
     │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 00.setup.md
         ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
 
----
+> 注：`00.setup.md` は初期設定の参照用としてこのリポジトリに残され、`init.sh` ではターゲットプロジェクトにコピーされません。
+
 
 ## 使い方2：AI 操作ガイドウィザードのインストール（init-skill.sh）
 
@@ -108,15 +105,65 @@ bash scripts/init-skill.sh --skill speckit --target claude
 
 # すべてを Copilot にインストール
 bash scripts/init-skill.sh --skill all --target copilot
+
+# 既存の宛先がある場合も確認せず上書き
+bash scripts/init-skill.sh --skill all --target copilot --force
 ```
 
 | パラメータ | 説明 |
 |------------|------|
 | `-s, --skill` | `openspec` / `speckit` / `all` |
 | `-t, --target` | `copilot`（~/.copilot/skills）/ `claude`（~/.claude/skills） |
+| `-f, --force` | 既存のターゲットディレクトリを確認なしで上書き |
 | `-h, --help` | ヘルプを表示 |
 
 ---
+---
+## 使用方法 3: ai-global 経由でオペレーションガイドウィザードをインストール
+
+[ai-global](https://github.com/lazyjerry/ai-global) は、複数の AI ツール（Copilot、Claude Code、Cursor、Windsurf など）の統合設定マネージャーです。この方法でウィザードをグローバルにインストールし、すべての AI ツール間で同期します。
+
+### 前提条件
+
+まず ai-global をインストールします：
+
+```bash
+# curl を使用（推奨）
+curl -fsSL https://raw.githubusercontent.com/lazyjerry/ai-global/main/install.sh | bash
+
+# または npm を使用
+npm install -g ai-global
+```
+
+### ウィザードのインストール
+
+```bash
+# SDD OpenSpec ウィザードを追加
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-openspec
+
+# SDD Spec Kit ウィザードを追加
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-speckit
+
+# または本リポジトリをクローンしてから両方をインストール
+git clone https://github.com/lazyjerry/SDD-Kits.git
+ai-global add-skill ./SDD-Kits/skills/sdd-openspec
+ai-global add-skill ./SDD-Kits/skills/sdd-speckit
+```
+
+### インストールの確認
+
+```bash
+# インストール済みのすべてのスキルをリスト表示
+ai-global list-skills
+
+# ステータスを確認
+ai-global status
+```
+
+インストール完了後、ウィザードはすべての設定された AI ツール（Copilot、Claude Code、Cursor など）で利用可能になります。会話で OpenSpec または Spec Kit について言及すると、ウィザードが自動的に起動します。
+
+---
+
 
 ## SDD ステップ概要
 

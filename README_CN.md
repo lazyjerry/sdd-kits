@@ -37,7 +37,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 ## 使用方式一：安装步骤模板（init.sh）
 
-将 SDD 步骤的 Markdown 文件复制到目标项目的 `sdd-steps/` 目录，方便开发时参考。
+将 SDD 步骤 Markdown 文件（从 `01.*` 开始）和 `prompt.md` 复制到目标项目的 `sdd-steps/` 目录，方便开发时参考。
 
 ### 交互模式
 
@@ -72,16 +72,16 @@ bash scripts/init.sh --tool all --project ~/work/my-app
 <你的项目>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 00.setup.md
     │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 00.setup.md
         ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
+
+> 注：`00.setup.md` 保留在本仓库作为初始化参考，`init.sh` 不会复制到目标项目。
 
 ---
 
@@ -108,13 +108,62 @@ bash scripts/init-skill.sh --skill speckit --target claude
 
 # 全部安装到 Copilot
 bash scripts/init-skill.sh --skill all --target copilot
+
+# 目标已存在时直接覆盖，不再询问
+bash scripts/init-skill.sh --skill all --target copilot --force
 ```
 
 | 参数 | 说明 |
 |------|------|
 | `-s, --skill` | `openspec` / `speckit` / `all` |
 | `-t, --target` | `copilot`（~/.copilot/skills）/ `claude`（~/.claude/skills） |
+| `-f, --force` | 目标已存在时直接覆盖，不再询问 |
 | `-h, --help` | 显示说明 |
+
+
+## SDD 步骤概览
+## 使用方式三：通过 ai-global 安装操作引导精灵
+
+[ai-global](https://github.com/lazyjerry/ai-global) 是多个 AI 工具（Copilot、Claude Code、Cursor、Windsurf 等）的统一配置管理器。使用此方式全局安装精灵并同步到所有 AI 工具。
+
+### 先决条件
+
+先安装 ai-global：
+
+```bash
+# 使用 curl（推荐）
+curl -fsSL https://raw.githubusercontent.com/lazyjerry/ai-global/main/install.sh | bash
+
+# 或使用 npm
+npm install -g ai-global
+```
+
+### 安装精灵
+
+```bash
+# 添加 SDD OpenSpec 精灵
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-openspec
+
+# 添加 SDD Spec Kit 精灵
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-speckit
+
+# 或克隆本仓库后一次安装两个
+git clone https://github.com/lazyjerry/SDD-Kits.git
+ai-global add-skill ./SDD-Kits/skills/sdd-openspec
+ai-global add-skill ./SDD-Kits/skills/sdd-speckit
+```
+
+### 验证安装
+
+```bash
+# 列出所有已安装的 skills
+ai-global list-skills
+
+# 检查状态
+ai-global status
+```
+
+安装完成后，精灵将在所有配置的 AI 工具中可用（Copilot、Claude Code、Cursor 等）。在对话中提及 OpenSpec 或 Spec Kit，精灵会自动启动。
 
 ---
 

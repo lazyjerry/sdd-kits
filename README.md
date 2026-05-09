@@ -37,7 +37,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 ## Usage 1: Install Step Templates (init.sh)
 
-Copies SDD step Markdown files to the target project's `sdd-steps/` directory for reference during development.
+Copies SDD step Markdown files (from `01.*` onward) and `prompt.md` to the target project's `sdd-steps/` directory for reference during development.
 
 ### Interactive Mode
 
@@ -72,16 +72,16 @@ bash scripts/init.sh --tool all --project ~/work/my-app
 <your-project>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 00.setup.md
     │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 00.setup.md
         ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
+
+> Note: `00.setup.md` is kept in this repo as a setup reference and is not copied to the target project by `init.sh`.
 
 ---
 
@@ -108,13 +108,62 @@ bash scripts/init-skill.sh --skill speckit --target claude
 
 # Install all to Copilot
 bash scripts/init-skill.sh --skill all --target copilot
+
+# Overwrite existing destination without prompt
+bash scripts/init-skill.sh --skill all --target copilot --force
 ```
 
 | Flag | Description |
 |------|-------------|
 | `-s, --skill` | `openspec` / `speckit` / `all` |
 | `-t, --target` | `copilot` (~/.copilot/skills) / `claude` (~/.claude/skills) |
+| `-f, --force` | Overwrite existing target directory without prompt |
 | `-h, --help` | Show help |
+
+
+## SDD Step Overview
+## Usage 3: Install AI Guided Wizards via ai-global
+
+[ai-global](https://github.com/lazyjerry/ai-global) is a unified configuration manager for multiple AI tools (Copilot, Claude Code, Cursor, Windsurf, etc.). Use this method to install skills globally and sync them across all your AI tools.
+
+### Prerequisites
+
+Install ai-global first:
+
+```bash
+# Using curl (recommended)
+curl -fsSL https://raw.githubusercontent.com/lazyjerry/ai-global/main/install.sh | bash
+
+# Or using npm
+npm install -g ai-global
+```
+
+### Installation
+
+```bash
+# Add SDD OpenSpec wizard
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-openspec
+
+# Add SDD Spec Kit wizard
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-speckit
+
+# Or install both at once by cloning the repo
+git clone https://github.com/lazyjerry/SDD-Kits.git
+ai-global add-skill ./SDD-Kits/skills/sdd-openspec
+ai-global add-skill ./SDD-Kits/skills/sdd-speckit
+```
+
+### Verify Installation
+
+```bash
+# List all installed skills
+ai-global list-skills
+
+# Check status
+ai-global status
+```
+
+After installation, the skills will be available in all configured AI tools (Copilot, Claude Code, Cursor, etc.). Mention OpenSpec or Spec Kit in a conversation and the wizard will auto-launch.
 
 ---
 

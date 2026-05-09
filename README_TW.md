@@ -37,7 +37,7 @@ uv tool install specify-cli --from git+https://github.com/github/spec-kit.git
 
 ## 使用方式一：安裝步驟範本（init.sh）
 
-將 SDD 步驟的 Markdown 檔案複製到目標專案的 `sdd-steps/` 目錄，方便開發時參考。
+將 SDD 步驟 Markdown 檔（從 `01.*` 開始）與 `prompt.md` 複製到目標專案的 `sdd-steps/` 目錄，方便開發時參考。
 
 ### 互動模式
 
@@ -72,16 +72,16 @@ bash scripts/init.sh --tool all --project ~/work/my-app
 <你的專案>/
 └── sdd-steps/
     ├── open-spec-steps/
-    │   ├── 00.setup.md
     │   ├── 01.project-setup.md
     │   ├── ...
     │   └── prompt.md
     └── spec-kit-steps/
-        ├── 00.setup.md
         ├── 01.constitution.md
         ├── ...
         └── prompt.md
 ```
+
+> 註：`00.setup.md` 會保留在本 repo 作為初始化參考，`init.sh` 不會複製到目標專案。
 
 ---
 
@@ -108,13 +108,62 @@ bash scripts/init-skill.sh --skill speckit --target claude
 
 # 全部安裝到 Copilot
 bash scripts/init-skill.sh --skill all --target copilot
+
+# 目標已存在時直接覆蓋，不再詢問
+bash scripts/init-skill.sh --skill all --target copilot --force
 ```
 
 | 參數 | 說明 |
 |------|------|
 | `-s, --skill` | `openspec` / `speckit` / `all` |
 | `-t, --target` | `copilot`（~/.copilot/skills）/ `claude`（~/.claude/skills） |
+| `-f, --force` | 目標已存在時直接覆蓋，不再詢問 |
 | `-h, --help` | 顯示說明 |
+
+
+## SDD 步驟概覽
+## 使用方式三：透過 ai-global 安裝操作指引精靈
+
+[ai-global](https://github.com/lazyjerry/ai-global) 是多個 AI 工具（Copilot、Claude Code、Cursor、Windsurf 等）的統一配置管理器。使用此方式全域安裝精靈並同步到所有 AI 工具。
+
+### 先決條件
+
+先安裝 ai-global：
+
+```bash
+# 使用 curl（推薦）
+curl -fsSL https://raw.githubusercontent.com/lazyjerry/ai-global/main/install.sh | bash
+
+# 或使用 npm
+npm install -g ai-global
+```
+
+### 安裝精靈
+
+```bash
+# 新增 SDD OpenSpec 精靈
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-openspec
+
+# 新增 SDD Spec Kit 精靈
+ai-global add-skill lazyjerry/SDD-Kits/skills/sdd-speckit
+
+# 或克隆本 repo 後一次安裝兩個
+git clone https://github.com/lazyjerry/SDD-Kits.git
+ai-global add-skill ./SDD-Kits/skills/sdd-openspec
+ai-global add-skill ./SDD-Kits/skills/sdd-speckit
+```
+
+### 驗證安裝
+
+```bash
+# 列出所有已安裝的 skills
+ai-global list-skills
+
+# 檢查狀態
+ai-global status
+```
+
+安裝完成後，精靈將在所有配置的 AI 工具中可用（Copilot、Claude Code、Cursor 等）。在對話中提及 OpenSpec 或 Spec Kit，精靈會自動啟動。
 
 ---
 
